@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3f1c6d; /* Cor roxa de fundo */
+    color: #fff; /* Texto branco para contraste */
+}
+
+header {
+    background-color: #7a3e92; /* Cor roxa mais clara */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #e5a5f1; /* Cor roxa mais clara ao passar o mouse */
+}
+
+section {
+    padding: 2rem;
+    margin-top: 1rem;
+    background-color: #6b3478; /* Cor roxa mais suave */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    color: #e5a5f1; /* Cor roxa clara para os títulos */
+    margin-bottom: 1rem;
+}
+
+form {
+    margin-bottom: 2rem;
+}
+
+form label {
+    display: block;
+    margin: 0.5rem 0;
+    color: #f2f2f2; /* Cor suave para as labels */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #4a1d58; /* Borda roxa */
+    border-radius: 4px;
+    background-color: #4a1d58; /* Fundo roxo escuro */
+    color: white;
+}
+
+input:focus, textarea:focus {
+    border-color: #e5a5f1; /* Roxo claro ao focar */
+    background-color: #3f1c6d;
+}
+
+button {
+    background-color: #7a3e92; /* Roxo mais claro para botões */
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #9b58a7; /* Roxo médio ao passar o mouse */
+}
+
+ul {
+    list-style-type: none;
+}
+
+footer {
+    background-color: #4a1d58; /* Roxo escuro para o rodapé */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: #d1c0d3; /* Cor mais suave para o texto do rodapé */
+}
+
+.hidden {
+    display: none;
+}
+
+.relatorio-table {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+}
+
+.relatorio-table th, .relatorio-table td {
+    padding: 0.8rem;
+    border: 1px solid #7a3e92; /* Borda roxa clara */
+    text-align: left;
+    font-size: 1rem;
+}
+
+.relatorio-table th {
+    background-color: #7a3e92;
+    color: white;
+}

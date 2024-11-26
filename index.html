@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Colaboradores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #3f1c6d; /* Cor roxa de fundo */
+            color: #fff; /* Texto branco para contraste */
+            padding: 20px;
+        }
+
+        header {
+            background-color: #7a3e92; /* Cor roxa mais clara */
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #e5a5f1; /* Cor roxa mais clara ao passar o mouse */
+        }
+
+        section {
+            padding: 2rem;
+            margin-top: 1rem;
+            background-color: #6b3478; /* Cor roxa mais suave */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none; /* Inicialmente, todas as seções estão ocultas */
+        }
+
+        h2 {
+            color: #e5a5f1; /* Cor roxa clara para os títulos */
+            margin-bottom: 1rem;
+        }
+
+        form {
+            margin-bottom: 2rem;
+        }
+
+        form label {
+            display: block;
+            margin: 0.5rem 0;
+            color: #f2f2f2; /* Cor suave para as labels */
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #4a1d58; /* Borda roxa */
+            border-radius: 4px;
+            background-color: #4a1d58; /* Fundo roxo escuro */
+            color: white;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #e5a5f1; /* Roxo claro ao focar */
+            background-color: #3f1c6d;
+        }
+
+        button {
+            background-color: #7a3e92; /* Roxo mais claro para botões */
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #9b5eaa; /* Roxo mais claro ao passar o mouse */
+        }
+
+        table {
+            width: 100%;
+            margin-top: 1rem;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #4a1d58;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #6b3478;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gestão de Colaboradores</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('cadastro')">Cadastro de Colaboradores</a></li>
+                <li><a href="#" onclick="showSection('tarefas')">Gestão de Tarefas</a></li>
+                <li><a href="#" onclick="showSection('relatorios')">Relatórios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="cadastro">
+        <h2>Cadastrar Novo Colaborador</h2>
+        <form id="formCadastro">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" required>
+
+            <label for="salario">Salário:</label>
+            <input type="number" id="salario" name="salario" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        <a href="#" onclick="showSection('')">Voltar ao Menu</a>
+    </section>
+
+    <section id="tarefas">
+        <h2>Adicionar Nova Tarefa</h2>
+        <form id="formTarefa">
+            <label for="colaborador">Colaborador:</label>
+            <input type="text" id="colaborador" name="colaborador" required>
+
+            <label for="descricaoTarefa">Descrição da Tarefa:</label>
+            <textarea id="descricaoTarefa" name="descricaoTarefa" required></textarea>
+
+            <button type="submit">Adicionar Tarefa</button>
+        </form>
+
+        <h3>Tarefas Atuais</h3>
+        <div id="listaTarefas" class="tarefa-lista"></div>
+
+        <a href="#" onclick="showSection('')">Voltar ao Menu</a>
+    </section>
+
+    <section id="relatorios">
+        <h2>Aqui você pode visualizar relatórios de produtividade e salários dos colaboradores.</h2>
+        <button onclick="gerarRelatorio()">Gerar Relatório de Colaboradores</button>
+        <button onclick="baixarPlanilha()">Baixar Planilha de Salários</button>
+
+        <h3>Relatório de Colaboradores</h3>
+        <table class="relatorio-table" id="relatorioTabela">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                    <th>Salário</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados serão inseridos aqui -->
+            </tbody>
+        </table>
+
+        <a href="#" onclick="showSection('')">Voltar ao Menu</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Gestão de Colaboradores. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            if (sectionId) {
+                document.getElementById(sectionId).style.display = 'block';
+            }
+        }
+
+        // Exibe a página inicial ao carregar
+        window.onload = function() {
+            showSection('');
+        }
+
+        // Função para gerar o relatório
+        function gerarRelatorio() {
+            const tabela = document.getElementById('relatorioTabela').getElementsByTagName('tbody')[0];
+            const novoRelatorio = [
+                { nome: 'João', cargo: 'Desenvolvedor', salario: 'R$ 5.000' },
+                { nome: 'Maria', cargo: 'Gerente', salario: 'R$ 7.000' }
+            ];
+
+            tabela.innerHTML = ''; // Limpar tabela
+            novoRelatorio.forEach(item => {
+                const row = tabela.insertRow();
+                row.innerHTML = `<td>${item.nome}</td><td>${item.cargo}</td><td>${item.salario}</td>`;
+            });
+        }
+
+        // Função para baixar a planilha (simulada)
+        function baixarPlanilha() {
+            alert('Planilha de salários gerada!');
+        }
+    </script>
+</body>
+</html>
